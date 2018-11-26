@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Orders</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <script src="js/fetcher.js"></script>
+    <script src="js/validator.js"></script>
+</head>
+
+<body id="index-body">
+    <header id="header-content">
+        <div class="over-menu">
+            <p id="order-count"></p>
+        </div>
+        <div class="over-content">
+            <p>Order</p>
+        </div>
+    </header>
+
+    <main id="main-view">
+        <div class="left-menu">
+            <div class="search">
+                <input type="text" placeholder="Order search..." class="order-search">
+                <div class="search-icons">
+                    <input type="button" class="search-function">
+                    <input type="button" class="refresh-function">
+                </div>
+            </div>
+            <section>
+                <ul id="order-list">
+                    <div id="loading-block">
+                        <img src="img/loading.gif" id="Loading-block" alt="loading">
+                    </div>
+                </ul>
+                <div class="add-new-order hidden">
+                    <div id="input-list">
+                        <input type="text" placeholder="input name..." id="customer" required>
+                        <input type="date" placeholder="input shipped-date..." id="shipped" required>
+                        <input type="text" placeholder="input now status..." id="status" required>
+                        <input type="text" placeholder="input order's currency..." id="currency" required>
+                        <input type="text" placeholder="input Company name..." id="name" required>
+                        <input type="text" placeholder="input address..." id="address" required>
+                        <input type="number" placeholder="input ZIP..." id="zip" required>
+                        <input type="text" placeholder="input region..." id="region" required>
+                        <input type="text" placeholder="input county..." id="country" required>
+                        <input type="text" placeholder="input first-name..." id="first-name" required>
+                        <input type="text" placeholder="input last-name..." id="last-name" required>
+                        <input type="text" placeholder="input address..." id="address" required>
+                        <input type="number" placeholder="input phone..." id="phone" required>
+                        <input type="email" placeholder="input mail..." id="email" required>
+                        <br>
+                        <button class="post-new-order">Add!</button>
+                        <button class="cancel">Cancel</button>
+                    </div>
+            </section>
+        </div>
+
+        <div id="content" class="hidden">
+            <div id="order-container">
+                <div id="order-info">
+                    <article class="order-number">
+                        <h1 id="order-title">Order:</h1>
+                        <ul>
+                            <li id="order-customer">Customer:</li>
+                            <li id="ordered-date">Ordered:</li>
+                            <li id="shipped-date">Shipped:</li>
+                        </ul>
+                    </article>
+                    <article class="price">
+                        <h2 id="price-tittle">$</h2>
+                        <p id="product-currency"></p>
+                    </article>
+                </div>
+            </div>
+            <div class="car-or-human-panel">
+                <section>
+                    <a href="#" class="active" id="car"><img src="img/car1.png" alt="car" onclick="getCustomerInfo()"></a>
+                    <a href="#" class="no-active" id="human"><img src="img/human1.png" alt="human" onclick="getHumanInfo()"></a>
+                    <a href="#" class="no-active" id="map"><img src="img/map.png" alt="map" onclick="getMyMap()"></a>
+                </section> 
+            </div>
+            <div id="address-info" id = "shipping-address" class="address-info">
+                <article class="address">
+                    <h2 id="under-info-content">Shipping Address</h2>
+                </article>
+                <article class="requisites">
+                    <ul>
+                        <li id="street">Steet:</li>
+                        <li id="code">Zip code:</li>
+                        <li id="city">City:</li>
+                        <li id="county">County:</li>
+                    </ul>
+                     <img src="img/paint.png" alt="paint" id="redact-function">
+                        </div>
+                       
+                </article>
+                <div id="maping">
+            </div>
+            <article class="line-items">
+                <div class="products-header-wrap">
+                    <h2 id="products-header-title"></h2>
+                    <div class="products-header-searh-area">
+                        <div class="search">
+                            <input id="products-search-area" class="order-search" type="text" placeholder="search for product..." />
+                            <div class="search-icons">
+                                <input type="button" id="product-search" class="search-function">
+                                <input type="button" id="product-refresh" class="refresh-function">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" id="new-product" class="products-toolbar-item">
+                    <img src="img/plus.png" class="input-new-product" alt="bars">
+                </a>
+                <a href="#" id="delete-product" class="products-toolbar-item">
+                    <img src="img/basket-for-product-list.png" class="input-new-product" alt="bars">
+                </a>
+
+                <div class="plus-block hidden">
+                    <div id="add-new-product">
+                        <input id="new-product-name" type="text" placeholder="input product name...">
+                        <input id="new-product-price" type="text" placeholder="input unit price...">
+                        <input id="new-product-quantity" type="text" placeholder="input quantity...">
+                        <input id="new-product-total-price" type="text" placeholder="input total price...">
+                    </div>
+                    <div id="add-new-product-buttons">
+                        <button class="post-new-product">add!</button>
+                        <button onclick="cancelPosting()">cancel</button>
+                    </div>
+                </div>
+                <table>
+                    <thead id="products-table-head"></thead>
+                    <tbody id="products-table-body"></tbody>
+                </table>
+            </article>
+        </div>
+
+        <div id="empty-content">
+            <div id="order-container">
+                <div id="order-info">
+                    <article class="order-number">
+                        <h1 id="order-title">Select an order to continue...</h1>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer-content">
+            <div class="under-menu">
+                <a href="#"><img src="img/plus.png" class="plus-product" alt="bars"></a>
+            </div>
+            <div class="under-content">
+                <a href="#"><img src="img/basket.png" class="delete-this-order" alt="message"></a>
+            </div>
+        </footer>
+        <head>
+            
+        <script src="js/workFlow.js"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=194c7679-6536-441f-940f-db5de7bcc4ef&lang=ru_RU" type="text/javascript">
+        </script>
+
+</body>
+
+</html>
